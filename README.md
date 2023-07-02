@@ -5,6 +5,8 @@ Hangman is a game that has entertained and challenged players for generations. I
 
 The game is built using Python programming language, showcasing its versatility and power in creating interactive experiences. The command line interface provides a straightforward and intuitive way to play, without the need for complex graphics or fancy visuals.
 
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/5e8d0c2f-c2e5-42e3-9cd7-e0e4ca664ee3)
+
 <br>
 
 ## Table of Contents
