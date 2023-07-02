@@ -24,6 +24,17 @@ def main_menu(choice):
         else:
             print('Please enter either "1" or "2"')
             choice = input("Enter key: ")
+
+def display_rules():
+    tprint("\n\nGAME RULES")
+    print(f"""  ALRIGHT {USER}, LISTEN UP CAREFULLY...THE RULES ARE AS FOLLOWS:
+        
+    1. The game begins with a hidden word, each letter within this word is represented by a dash.
+    2. Your objective is to guess the hidden word correctly by suggesting letters one at a time.
+    3. If you correctly guess a letter in the hidden, all instances of that letter are revealed.
+    4. If you guess an incorrect letter, you receive a strike, and one of the hanged man's body parts is revealed.
+    5. You have a total of 6 guesses, failing to reveal the word within 6 tries will result in a loss.
+""")
             
 def main():
     welcome_screen_art()
