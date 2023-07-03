@@ -2,6 +2,7 @@ from art import * #import all from the art module
 from words import medium_word_list
 import random
 
+
 def welcome_screen_art():
     """This function displays an ascii welcome logo and art piece.
     The skull art is stored in a seperate text file and is called
@@ -13,13 +14,13 @@ def welcome_screen_art():
         for line in file:
             print(line, end="")
 
-def main_menu(choice):
+def main_menu(choice, USER):
     """This function comprises the main menu. From here the user can select 
     the option to view the game rules, or the option to start the game itself"
     """
     while True:
         if choice == '1':
-            display_rules()
+            display_rules(USER)
             break
         elif choice == '2':
             #start_game()
@@ -28,7 +29,7 @@ def main_menu(choice):
             print('Please enter either "1" or "2"')
             choice = input("Enter key: ")
 
-def display_rules():
+def display_rules(USER):
     """This function displays game rules and information when called.
        The function also refers to the user by their name.
     """
@@ -45,12 +46,11 @@ def display_rules():
 def get_random_word():
     random_word = random.choice(medium_word_list)
     hidden_word = "-" * len(random_word)
-    return hidden_word
+    return random_word, hidden_word
 
 def main():
     welcome_screen_art()
     print("\n\nWelcome to Hangman's Quest!")
-    global USER
     USER = input(str("Please enter your name: ")).upper()
     print(f"\nWelcome to the game {USER}!")
     print("""\nSelect from either option below:
@@ -58,11 +58,12 @@ def main():
     2. Start Game
     """)
     menu_choice = input("Enter key: ")
-    main_menu(menu_choice)
+    main_menu(menu_choice, USER)
     retrieved_word = get_random_word()
 
 #main()
-retrieved_word = get_random_word()
-print(retrieved_word)
+retrieved_random_word, retrieved_hidden_word = get_random_word()
+print(retrieved_hidden_word)
+print(retrieved_random_word)
 
 
