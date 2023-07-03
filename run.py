@@ -1,4 +1,7 @@
 from art import * #import all from the art module
+from words import medium_word_list
+import random
+
 def welcome_screen_art():
     """This function displays an ascii welcome logo and art piece.
     The skull art is stored in a seperate text file and is called
@@ -26,6 +29,9 @@ def main_menu(choice):
             choice = input("Enter key: ")
 
 def display_rules():
+    """This function displays game rules and information when called.
+       The function also refers to the user by their name.
+    """
     tprint("\n\nGAME RULES")
     print(f"""  ALRIGHT {USER}, LISTEN UP CAREFULLY...THE RULES ARE AS FOLLOWS:
         
@@ -36,6 +42,11 @@ def display_rules():
     5. You have a total of 6 guesses, failing to reveal the word within 6 tries will result in a loss.
 """)
             
+def get_random_word():
+    random_word = random.choice(medium_word_list)
+    hidden_word = "-" * len(random_word)
+    return hidden_word
+
 def main():
     welcome_screen_art()
     print("\n\nWelcome to Hangman's Quest!")
@@ -48,5 +59,10 @@ def main():
     """)
     menu_choice = input("Enter key: ")
     main_menu(menu_choice)
+    retrieved_word = get_random_word()
 
-main()
+#main()
+retrieved_word = get_random_word()
+print(retrieved_word)
+
+
