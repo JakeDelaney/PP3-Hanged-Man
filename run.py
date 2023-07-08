@@ -31,17 +31,18 @@ def welcome_screen():
         else:
             break
     tprint(f"\nWelcome   to     the     game   {USER}!")
+    return USER
+
+
+def main_menu(USER):
+    """This function comprises the main menu. From here the user can select 
+    the option to view the game rules, or the option to start the game itself"
+    """
     print("""\nSelect from either option below:
     1. Game Rules
     2. Start Game
     """)
-    return USER
-
-
-def main_menu(choice, USER):
-    """This function comprises the main menu. From here the user can select 
-    the option to view the game rules, or the option to start the game itself"
-    """
+    choice = input("Enter key: ")
     while True:
         if choice == '1':
             tprint("\n\nGAME RULES")
@@ -126,8 +127,7 @@ def display_hangman_stage(lives):
 
 def main():
     USER = welcome_screen()
-    menu_choice = input("Enter key: ")
-    main_menu(menu_choice, USER)
+    main_menu(USER)
     get_random_word()
     retrieved_random_word, retrieved_hidden_word = get_random_word()
     (play_game(retrieved_random_word, retrieved_hidden_word))
