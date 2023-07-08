@@ -34,7 +34,6 @@ def main_menu(choice, USER):
             read_txt_file("game_rules.txt")
             break
         elif choice == '2':
-            get_random_word()
             break
         else:
             print('Please enter either "1" or "2"')
@@ -50,22 +49,26 @@ def get_random_word():
     hidden_word = "-" * len(random_word)
     return random_word, hidden_word
 
+def play_game(word, hidden):
+    guessed = False
+    wrong_guess = []
+    correct_guess = []
+    print(hidden)
 
 def main():
     welcome_screen()
     print("\n\nWelcome to Hangman's Quest!")
     USER = input(str("Please enter your name: ")).upper()
-    print(f"\nWelcome to the game {USER}!")
+    tprint(f"\nWelcome   to     the     game   {USER}!")
     print("""\nSelect from either option below:
     1. Game Rules
     2. Start Game
     """)
     menu_choice = input("Enter key: ")
     main_menu(menu_choice, USER)
-
+    get_random_word()
     retrieved_random_word, retrieved_hidden_word = get_random_word()
-    print (retrieved_hidden_word)
-    print (retrieved_random_word)
+    (play_game(retrieved_random_word, retrieved_hidden_word))
 
 main()
 
