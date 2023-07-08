@@ -1,5 +1,6 @@
 from art import * #import all from the art module
 from words import medium_word_list # import our wordlist from the words.py file
+from hangman_stages import stage
 import random
 
 
@@ -58,6 +59,7 @@ def play_game(word, hidden):
     lives = 6
     wrong_guess = []
     correct_guess = []
+    print(display_hangman_stage(lives))
     print()
     print(hidden)
 
@@ -81,6 +83,7 @@ def play_game(word, hidden):
                         hidden += "_"
                 if hidden == word:
                     guessed = True
+                    
             else:
                 print("\n\n\n\n\n\nThat letter is not in the word....\n")
                 lives -= 1
@@ -88,6 +91,7 @@ def play_game(word, hidden):
                     wrong_guess.append(user_guess)
                 print(f"Current lives remaining: {lives}")
                 print(f"Incorrect guesses: {wrong_guess}")
+        print(display_hangman_stage(lives))
         print()
         print(hidden)
 
@@ -96,6 +100,10 @@ def play_game(word, hidden):
 The word was {word}""")
         elif lives > 0 and guessed is True:
             print("Congratulations! you have discovered the word!")
+
+
+def display_hangman_stage(lives):
+    return stage[::-1][lives]
 
 
 def main():
