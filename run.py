@@ -23,6 +23,20 @@ def welcome_screen():
     tprint("Hangman's Quest!")
     read_txt_file("ascii_skull.txt")
 
+    print("\n\nWelcome to Hangman's Quest!")
+    while True:
+        USER = input("\nPlease enter your name: ").upper()
+        if len(USER) == 0:
+            print("You cannot enter a blank name. Please try again.")
+        else:
+            break
+    tprint(f"\nWelcome   to     the     game   {USER}!")
+    print("""\nSelect from either option below:
+    1. Game Rules
+    2. Start Game
+    """)
+    return USER
+
 
 def main_menu(choice, USER):
     """This function comprises the main menu. From here the user can select 
@@ -111,19 +125,7 @@ def display_hangman_stage(lives):
 
 
 def main():
-    welcome_screen()
-    print("\n\nWelcome to Hangman's Quest!")
-    while True:
-        USER = input("\nPlease enter your name: ").upper()
-        if len(USER) == 0:
-            print("You cannot enter a blank name. Please try again.")
-        else:
-            break
-    tprint(f"\nWelcome   to     the     game   {USER}!")
-    print("""\nSelect from either option below:
-    1. Game Rules
-    2. Start Game
-    """)
+    USER = welcome_screen()
     menu_choice = input("Enter key: ")
     main_menu(menu_choice, USER)
     get_random_word()
