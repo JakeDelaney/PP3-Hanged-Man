@@ -1,6 +1,6 @@
 from art import * #import all from the art module
 from words import medium_word_list # import our wordlist from the words.py file
-from hangman_stages import stage
+from hangman_stages import stage #import our hangman ascii stages art from the hangman_stage.py
 import random
 
 
@@ -67,9 +67,10 @@ def play_game(word, hidden):
         user_guess = input("\nPlease enter your letter: ")
 
         if len(user_guess) == 1 and user_guess.isalpha():
-            if user_guess in correct_guess:
+            if user_guess in correct_guess or user_guess in wrong_guess:
                 print("Letter already guessed. Please try another.")
                 continue
+
             if user_guess in word:
                 hidden = ""
                 print("\n\n\n\n\n\nThat letter is in the word!\n")
@@ -83,7 +84,6 @@ def play_game(word, hidden):
                         hidden += "_"
                 if hidden == word:
                     guessed = True
-                    
             else:
                 print("\n\n\n\n\n\nThat letter is not in the word....\n")
                 lives -= 1
@@ -91,6 +91,7 @@ def play_game(word, hidden):
                     wrong_guess.append(user_guess)
                 print(f"Current lives remaining: {lives}")
                 print(f"Incorrect guesses: {wrong_guess}")
+
         print(display_hangman_stage(lives))
         print()
         print(hidden)
@@ -103,13 +104,21 @@ The word was {word}""")
 
 
 def display_hangman_stage(lives):
+    """This function returns the reversed order 
+       of the hang_stages file when called on.
+    """
     return stage[::-1][lives]
 
 
 def main():
     welcome_screen()
     print("\n\nWelcome to Hangman's Quest!")
-    USER = input(str("\nPlease enter your name: ")).upper()
+    while True:
+        USER = input("\nPlease enter your name: ").upper()
+        if len(USER) == 0:
+            print("You cannot enter a blank name. Please try again.")
+        else:
+            break
     tprint(f"\nWelcome   to     the     game   {USER}!")
     print("""\nSelect from either option below:
     1. Game Rules
