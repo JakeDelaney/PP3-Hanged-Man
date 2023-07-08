@@ -50,11 +50,40 @@ def get_random_word():
     return random_word, hidden_word
 
 def play_game(word, hidden):
+    """This function takes two arguments; the random word and its hidden variant.
+    The function uses if statements, and for loops, to control the flow of data and
+    makes logical decisions in regards to correct and incorrect user guesses.
+    """
     guessed = False
+    lives = 6
     wrong_guess = []
     correct_guess = []
+    #print("Current wrong guesses: ")
     print(hidden)
-
+    print(word)
+    while not guessed and lives > 0:
+        user_guess = input("Please enter your letter: ")
+        if len(user_guess) == 1 and user_guess.isalpha():
+            if user_guess in correct_guess:
+                print("You have already guessed that letter!")
+                continue
+            if user_guess in word:
+                hidden = ""
+                print("CORRECT!")
+                correct_guess.append(user_guess)
+                for letter in word:
+                    if letter in correct_guess:
+                        hidden += letter
+                    else:
+                        hidden += "_"
+                tprint(hidden)
+                print(correct_guess)
+                if hidden == word:
+                    print("ALL GUESSED")
+                    guessed = True
+        else:
+            ("Please enter a valid character....")
+    
 def main():
     welcome_screen()
     print("\n\nWelcome to Hangman's Quest!")
