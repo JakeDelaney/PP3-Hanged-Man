@@ -58,36 +58,50 @@ def play_game(word, hidden):
     lives = 6
     wrong_guess = []
     correct_guess = []
-    #print("Current wrong guesses: ")
+    print()
     print(hidden)
-    print(word)
+
     while not guessed and lives > 0:
-        user_guess = input("Please enter your letter: ")
+        user_guess = input("\nPlease enter your letter: ")
+
         if len(user_guess) == 1 and user_guess.isalpha():
             if user_guess in correct_guess:
-                print("You have already guessed that letter!")
+                print("Letter already guessed. Please try another.")
                 continue
             if user_guess in word:
                 hidden = ""
-                print("CORRECT!")
+                print("\n\n\n\n\n\nThat letter is in the word!\n")
                 correct_guess.append(user_guess)
+                print(f"Current lives remaining: {lives}")
+                print(f"Incorrect guesses: {wrong_guess}")
                 for letter in word:
                     if letter in correct_guess:
                         hidden += letter
                     else:
                         hidden += "_"
-                tprint(hidden)
-                print(correct_guess)
                 if hidden == word:
-                    print("ALL GUESSED")
                     guessed = True
-        else:
-            ("Please enter a valid character....")
-    
+            else:
+                print("\n\n\n\n\n\nThat letter is not in the word....\n")
+                lives -= 1
+                if user_guess not in wrong_guess:
+                    wrong_guess.append(user_guess)
+                print(f"Current lives remaining: {lives}")
+                print(f"Incorrect guesses: {wrong_guess}")
+        print()
+        print(hidden)
+
+        if lives == 0:
+            print(f"""\nYou have lost...
+The word was {word}""")
+        elif lives > 0 and guessed is True:
+            print("Congratulations! you have discovered the word!")
+
+
 def main():
     welcome_screen()
     print("\n\nWelcome to Hangman's Quest!")
-    USER = input(str("Please enter your name: ")).upper()
+    USER = input(str("\nPlease enter your name: ")).upper()
     tprint(f"\nWelcome   to     the     game   {USER}!")
     print("""\nSelect from either option below:
     1. Game Rules
