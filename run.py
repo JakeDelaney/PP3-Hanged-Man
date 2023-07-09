@@ -207,28 +207,31 @@ def main():
     this function contains all other central functions, as nested functions.
     From here these nested functions are called on when required.
     """
-    USER = welcome_screen()
-    streak = 0
-    main_menu(USER)
-    while True:
-        retrieved_random_word, retrieved_hidden_word = get_random_word()
-        streak = (play_game(
-            retrieved_random_word, retrieved_hidden_word, streak))
-        print("""\nEnd of the road...please choose from either option below:
-1. Play again
-2. Exit to main menu (THIS WILL RESET YOUR STREAK)""")
+    try:
+        USER = welcome_screen()
+        streak = 0
+        main_menu(USER)
         while True:
-            choice = input("\nEnter key: \n")
-            if choice == "1":
-                break
-            elif choice == "2":
-                update_wins_worksheet(USER, streak)
-                streak = 0
-                main_menu(USER)
-                break
-            else:
-                print('\nPlease enter either "1" or "2"')
-                continue
+            retrieved_random_word, retrieved_hidden_word = get_random_word()
+            streak = (play_game(
+                retrieved_random_word, retrieved_hidden_word, streak))
+            print("""\nEnd of the road...please choose from either option below:
+    1. Play again
+    2. Exit to main menu (THIS WILL RESET YOUR STREAK)""")
+            while True:
+                choice = input("\nEnter key: \n")
+                if choice == "1":
+                    break
+                elif choice == "2":
+                    update_wins_worksheet(USER, streak)
+                    streak = 0
+                    main_menu(USER)
+                    break
+                else:
+                    print('\nPlease enter either "1" or "2"')
+                    continue
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
-
-main()
+if __name__ == "__main__":
+    main()
