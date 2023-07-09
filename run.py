@@ -1,6 +1,7 @@
 import gspread #Import entire gspread library
 from google.oauth2.service_account import Credentials #import Credentials class from google auth library
 from art import * #import all from the art module
+from tabulate import tabulate
 from words import medium_word_list # import our wordlist from the words.py file
 from hangman_stages import stage #import our hangman ascii stages art from the hangman_stage.py
 import random
@@ -159,8 +160,7 @@ def update_wins_worksheet(USER, streak):
 
 def display_wins_worksheet():
     scores = SHEET.worksheet("Wins").get_all_values()
-    print (scores)
-
+    print(tabulate(scores, headers="firstrow", numalign="center", tablefmt="heavy_grid"))
 
 def main():
     USER = welcome_screen()
