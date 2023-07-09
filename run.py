@@ -157,6 +157,11 @@ def update_wins_worksheet(USER, streak):
     print("Update successful!")
 
 
+def display_wins_worksheet():
+    scores = SHEET.worksheet("Wins").get_all_values()
+    print (scores)
+
+
 def main():
     USER = welcome_screen()
     streak = 0
@@ -170,8 +175,9 @@ def main():
         else:
             update_wins_worksheet(USER, streak)
             break
-main()
+#main()
 
+display_wins_worksheet()
 
 
 
