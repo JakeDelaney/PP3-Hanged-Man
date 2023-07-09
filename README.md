@@ -41,6 +41,22 @@ The game is built using Python programming language, showcasing its versatility 
 <br>
 
 ## Features
+### Welcome Page
+The user is welcomed to the program through an ascii banner displaying the game name, and an ascii art piece of a skeleton skull.
+It is at the welcome page that the user is also prompted to enter a username. The username name prompt will accept both alphanumeric, and special characters.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/8474b6da-b39b-4ec0-8df1-f1048af8b5f7)
+
+<br>
+
+### Main Menu
+After entering a username, the user is immediately transported to the main menu, and their entered name is displayed in enlarged ascii text.
+There are 4 options the users can choose from:
+1. Game Rules
+2. Start Game
+3. Show Scoreboard
+4. Exit Game
+
 ### Future features to implement
 * Lorem ipsum
 
