@@ -3,3 +3,5 @@
     3. If you correctly guess a letter in the hidden, all instances of that letter are revealed.
     4. If you guess an incorrect letter, you receive a strike, and one of the hanged man's body parts is revealed.
     5. You have a total of 6 guesses, failing to reveal the word within 6 tries will result in a loss.
+
+    

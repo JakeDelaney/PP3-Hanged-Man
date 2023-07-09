@@ -72,6 +72,8 @@ def main_menu(USER):
             print('Please enter either "1" or "2"')
             choice = input("Enter key: ")
             
+    print ("\n\nNOW LET'S PLAY HANGMAN!")
+            
 
 def get_random_word():
     """This function pulls a randomized word from the word list
@@ -97,7 +99,7 @@ def play_game(word, hidden, streak):
     print(word)
 
     while not guessed and lives > 0:
-        user_guess = input("\nPlease enter your letter: ")
+        user_guess = input("\nEnter your guess: ")
 
         if len(user_guess) == 1 and user_guess.isalpha():
             if user_guess in correct_guess or user_guess in wrong_guess:
@@ -125,9 +127,11 @@ def play_game(word, hidden, streak):
                 print(f"Current lives remaining: {lives}")
                 print(f"Incorrect guesses: {wrong_guess}")
 
-        print(display_hangman_stage(lives))
-        print()
-        print(hidden)
+            print(display_hangman_stage(lives))
+            print()
+            print(hidden)
+        else:
+            print("Invalid entry: Only single alphabetical characters are accepted.")
 
         if lives == 0:
             print(f"""\nYou have lost...
@@ -156,8 +160,8 @@ def update_wins_worksheet(USER, streak):
 def main():
     USER = welcome_screen()
     streak = 0
+    main_menu(USER)
     while True:
-        main_menu(USER)
         retrieved_random_word, retrieved_hidden_word = get_random_word()
         streak = (play_game(retrieved_random_word, retrieved_hidden_word, streak))
         end = input(print("Play again?"))
