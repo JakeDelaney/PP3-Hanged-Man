@@ -1,9 +1,10 @@
-import gspread  # Import entire gspread library
-from google.oauth2.service_account import Credentials  # import Credentials class from google auth library
-from art import *  # import all from the art module
+# Import statements for external libraries and modules
+import gspread
+from google.oauth2.service_account import Credentials
+from art import *
 from tabulate import tabulate
-from words import medium_word_list  # import our wordlist from the words.py file
-from hangman_stages import stage  # import our hangman ascii stages art from the hangman_stage.py
+from words import medium_word_list
+from hangman_stages import stage
 import random
 
 # List of the APIs the program will access.
@@ -12,7 +13,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
-
+# Variables used to store credentials for API authorization
 CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
@@ -20,7 +21,8 @@ SHEET = GSPREAD_CLIENT.open("hanged_man")
 
 
 def read_txt_file(text):
-    """This function open a text file, and iterates through each line of the file.
+    """This function open a text file,
+       and iterates through each line of the file.
        The content of this file are then printed out to the terminal.
     """
     with open(text, "r") as file:
@@ -64,7 +66,8 @@ def main_menu(USER):
 
         if choice == '1':
             tprint("\nGAME RULES")
-            print(f"ALRIGHT {USER}, LISTEN UP CAREFULLY...THE RULES ARE AS FOLLOWS:\n")
+            print(f"""ALRIGHT {USER}, LISTEN UP CAREFULLY...
+            THE RULES ARE AS FOLLOWS:\n""")
             read_txt_file("game_rules.txt")
             continue
         elif choice == '2':
@@ -90,8 +93,10 @@ def get_random_word():
 
 
 def play_game(word, hidden, streak):
-    """This function takes two arguments; the random word and its hidden variant.
-    The function uses if statements, and for loops, to control the flow of data and
+    """This function takes two arguments;
+    the random word and its hidden variant.
+    The function uses if statements, and for loops,
+    to control the flow of data and
     makes logical decisions in regards to correct and incorrect user guesses.
     """
     guessed = False
@@ -136,7 +141,8 @@ def play_game(word, hidden, streak):
             print()
             print(hidden)
         else:
-            print("Invalid entry: Only single alphabetical characters are accepted.")
+            print("""Invalid entry:
+                     Only single alphabetical characters are accepted.""")
 
         if lives == 0:
             print(f"""\nYou have lost...
@@ -164,7 +170,8 @@ def update_wins_worksheet(USER, streak):
 
 def display_wins_worksheet():
     scores = SHEET.worksheet("Wins").get_all_values()
-    print(tabulate(scores, headers="firstrow", numalign="center", tablefmt="heavy_grid"))
+    print(tabulate(
+        scores, headers="firstrow", numalign="center", tablefmt="heavy_grid"))
 
 
 def main():
@@ -173,7 +180,8 @@ def main():
     main_menu(USER)
     while True:
         retrieved_random_word, retrieved_hidden_word = get_random_word()
-        streak = (play_game(retrieved_random_word, retrieved_hidden_word, streak))
+        streak = (play_game(
+            retrieved_random_word, retrieved_hidden_word, streak))
         print("""\nEnd of the road...please choose from either option below:
         1. Play again
         2. Exit to main menu (THIS WILL RESET YOUR STREAK)""")
@@ -192,3 +200,4 @@ def main():
 
 
 main()
+
