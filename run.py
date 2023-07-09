@@ -65,7 +65,7 @@ def get_random_word():
     hidden_word = "-" * len(random_word)
     return random_word, hidden_word
 
-def play_game(word, hidden):
+def play_game(word, hidden, streak):
     """This function takes two arguments; the random word and its hidden variant.
     The function uses if statements, and for loops, to control the flow of data and
     makes logical decisions in regards to correct and incorrect user guesses.
@@ -114,8 +114,11 @@ def play_game(word, hidden):
         if lives == 0:
             print(f"""\nYou have lost...
 The word was {word}""")
+            streak = 0
         elif lives > 0 and guessed is True:
             print("Congratulations! you have discovered the word!")
+            streak += 1
+    return streak
 
 
 def display_hangman_stage(lives):
@@ -127,11 +130,12 @@ def display_hangman_stage(lives):
 
 def main():
     USER = welcome_screen()
-    main_menu(USER)
-    get_random_word()
-    retrieved_random_word, retrieved_hidden_word = get_random_word()
-    (play_game(retrieved_random_word, retrieved_hidden_word))
-
+    streak = 0
+    while True:
+        main_menu(USER)
+        retrieved_random_word, retrieved_hidden_word = get_random_word()
+        streak = (play_game(retrieved_random_word, retrieved_hidden_word, streak))
+        print(streak)
 main()
 
 
