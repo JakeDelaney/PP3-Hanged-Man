@@ -21,16 +21,26 @@ The game is built using Python programming language, showcasing its versatility 
 
 ## User Experience (UX)
 * **First Time Visitor Goals**
-  * As a first time visitor, Lorem ipsum
+  * As a first time visitor, I want to enter a username into the program, and have that name referenced throughout.
+  * As a first time visitor, I would like to navigate through the program using an intuitive menu.
+  * As a first time visitor, I would like any invalid data entries of mine that may crash the program, to be handled and prevented.
+  * As a first time visitor, I would like to view the rules relating to the program.
+  * As a first time visitor, I would like my see how many attempts I have left at guessing, and how many incorrect words I have guessed so far.
+  * As a first time visitor, I would like the program to query If I am finished playing after each word reveal.
 
 * **Returning Visitor Goals**
-  * As a returning visitor, Lorem ipsum
+  * As a returning visitor, I would like to receive a randomly selected word from the program.
+  * As a returning visitor, I would like my score to be tracked and displayed within a scoreboard for viewing.
+  * As a returning visitor, I would like to improve my knowledge of word guessing through repeated error free use.
 
 * **Frequent User**
-  * As a frequent user, Lorem ipsum
+  * As a frequent user, I would like to access the scoreboard for long term comparisons of my word knowledge.
+  * As a frequent user, I would like an enjoyable and easy experience that encourages repeated use of the program.
+  * As a frequent user, I would like to improve my overall skillset and competency for hangman related games.
 
 <br>
 
+## Features
 ### Future features to implement
 * Lorem ipsum
 
