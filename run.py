@@ -17,9 +17,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hanged_man")
 
-wins = SHEET.worksheet("Wins")
-scores = wins.get_all_values()
-print(scores)
+#wins = SHEET.worksheet("Wins")
+#scores = wins.get_all_values()
+#print(scores)
 
 def read_txt_file(text):
     """This function open a text file, and iterates through each line of the file.
@@ -94,6 +94,7 @@ def play_game(word, hidden, streak):
     print(display_hangman_stage(lives))
     print()
     print(hidden)
+    print(word)
 
     while not guessed and lives > 0:
         user_guess = input("\nPlease enter your letter: ")
@@ -136,6 +137,7 @@ The word was {word}""")
             print("Congratulations! you have discovered the word!")
             streak += 1
     return streak
+    
 
 
 def display_hangman_stage(lives):
@@ -143,6 +145,12 @@ def display_hangman_stage(lives):
        of the hang_stages file when called on.
     """
     return stage[::-1][lives]
+
+def update_wins_worksheet(USER, streak):
+    print("Updating your score...")
+    wins_worksheet = SHEET.worksheet("Wins")
+    wins_worksheet.append_row([USER, streak])
+    print("Update successful!")
 
 
 def main():
@@ -152,8 +160,13 @@ def main():
         main_menu(USER)
         retrieved_random_word, retrieved_hidden_word = get_random_word()
         streak = (play_game(retrieved_random_word, retrieved_hidden_word, streak))
-        print(streak)
-#main()
+        end = input(print("Play again?"))
+        if end == "Y":
+            continue
+        else:
+            update_wins_worksheet(USER, streak)
+            break
+main()
 
 
 
