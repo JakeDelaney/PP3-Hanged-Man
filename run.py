@@ -36,7 +36,8 @@ def welcome_screen():
     read_txt_file() and tprint. User is prompted to enter a username,
     which is then returned.
     """
-    tprint("Hangman's Quest!")
+    tprint("""Hangman's 
+    Quest!""")
     read_txt_file("ascii_skull.txt")
 
     print("\n\nWelcome to Hangman's Quest!")
@@ -46,7 +47,7 @@ def welcome_screen():
             print("You cannot enter a blank name. Please try again.")
         else:
             break
-    tprint(f"\nWelcome   to     the     game   {USER}!")
+    tprint(f"""\nWelcome  {USER}!""")
     return USER
 
 
@@ -65,8 +66,7 @@ def main_menu(USER):
 
         if choice == '1':
             tprint("\nGAME RULES")
-            print(f"""ALRIGHT {USER}, LISTEN UP CAREFULLY...
-            THE RULES ARE AS FOLLOWS:\n""")
+            print(f"""ALRIGHT {USER}, THE RULES ARE AS FOLLOWS:\n""")
             read_txt_file("game_rules.txt")
             continue
         elif choice == '2':
