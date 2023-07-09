@@ -56,22 +56,26 @@ def main_menu(USER):
     """This function comprises the main menu. From here the user can select 
     the option to view the game rules, or the option to start the game itself"
     """
-    print("""\nSelect from either option below:
-    1. Game Rules
-    2. Start Game
-    """)
-    choice = input("Enter key: ")
-    while True:
+    loop_menu = True
+
+    while loop_menu:
+        print("""\nSelect from either option below:
+        1. Game Rules
+        2. Start Game
+        3. Show scoreboard
+        """)
+        choice = input("Enter key: ")
+
         if choice == '1':
-            tprint("\n\nGAME RULES")
+            print("\n\nGAME RULES")
             print(f"ALRIGHT {USER}, LISTEN UP CAREFULLY...THE RULES ARE AS FOLLOWS:\n")
             read_txt_file("game_rules.txt")
-            break
         elif choice == '2':
-            break
+            loop_menu = False
+        elif choice == '3':
+            display_wins_worksheet()
         else:
             print('Please enter either "1" or "2"')
-            choice = input("Enter key: ")
             
     print ("\n\nNOW LET'S PLAY HANGMAN!")
             
@@ -121,7 +125,7 @@ def play_game(word, hidden, streak):
                 if hidden == word:
                     guessed = True
             else:
-                print("\n\n\n\n\n\nThat letter is not in the word....\n")
+                print("\n\n\n\n\n\nThat letter is not in the word...\n")
                 lives -= 1
                 if user_guess not in wrong_guess:
                     wrong_guess.append(user_guess)
@@ -169,15 +173,15 @@ def main():
     while True:
         retrieved_random_word, retrieved_hidden_word = get_random_word()
         streak = (play_game(retrieved_random_word, retrieved_hidden_word, streak))
-        end = input(print("Play again?"))
-        if end == "Y":
+        end = input(print("""\nEnd of the road...please choose from either option below: 
+                            1. Play again
+                            2. Exit to main menu (THIS WILL RESET YOUR STREAK)"""))
+        if end == "1":
             continue
         else:
             update_wins_worksheet(USER, streak)
             break
-#main()
-
-display_wins_worksheet()
+main()
 
 
 
