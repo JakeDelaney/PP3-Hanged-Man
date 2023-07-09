@@ -1,32 +1,29 @@
-import gspread #Import entire gspread library
-from google.oauth2.service_account import Credentials #import Credentials class from google auth library
-from art import * #import all from the art module
+import gspread  # Import entire gspread library
+from google.oauth2.service_account import Credentials  # import Credentials class from google auth library
+from art import *  # import all from the art module
 from tabulate import tabulate
-from words import medium_word_list # import our wordlist from the words.py file
-from hangman_stages import stage #import our hangman ascii stages art from the hangman_stage.py
+from words import medium_word_list  # import our wordlist from the words.py file
+from hangman_stages import stage  # import our hangman ascii stages art from the hangman_stage.py
 import random
 
-#List of the APIs the program will access.
+# List of the APIs the program will access.
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file("creds.json") 
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("hanged_man")
 
-#wins = SHEET.worksheet("Wins")
-#scores = wins.get_all_values()
-#print(scores)
 
 def read_txt_file(text):
     """This function open a text file, and iterates through each line of the file.
        The content of this file are then printed out to the terminal.
     """
-    with open(text, "r") as file: 
+    with open(text, "r") as file:
         for line in file:
             print(line, end="")
         print()
@@ -53,12 +50,11 @@ def welcome_screen():
 
 
 def main_menu(USER):
-    """This function comprises the main menu. From here the user can select 
+    """This function comprises the main menu. From here the user can select
     the option to view the game rules, or the option to start the game itself"
     """
-    loop_menu = True
 
-    while loop_menu:
+    while True:
         print("""\nSelect from either option below:
         1. Game Rules
         2. Start Game
@@ -67,18 +63,21 @@ def main_menu(USER):
         choice = input("Enter key: ")
 
         if choice == '1':
-            print("\n\nGAME RULES")
+            tprint("\nGAME RULES")
             print(f"ALRIGHT {USER}, LISTEN UP CAREFULLY...THE RULES ARE AS FOLLOWS:\n")
             read_txt_file("game_rules.txt")
+            continue
         elif choice == '2':
-            loop_menu = False
+            break
         elif choice == '3':
+            tprint("\nSCOREBOARD")
             display_wins_worksheet()
+            continue
         else:
-            print('Please enter either "1" or "2"')
-            
-    print ("\n\nNOW LET'S PLAY HANGMAN!")
-            
+            print('Please enter either "1", "2" or "3"')
+        break
+    tprint("\nNOW LET'S PLAY HANGMAN!")
+
 
 def get_random_word():
     """This function pulls a randomized word from the word list
@@ -88,6 +87,7 @@ def get_random_word():
     random_word = random.choice(medium_word_list)
     hidden_word = "-" * len(random_word)
     return random_word, hidden_word
+
 
 def play_game(word, hidden, streak):
     """This function takes two arguments; the random word and its hidden variant.
@@ -146,14 +146,14 @@ The word was {word}""")
             print("Congratulations! you have discovered the word!")
             streak += 1
     return streak
-    
 
 
 def display_hangman_stage(lives):
-    """This function returns the reversed order 
+    """This function returns the reversed order
        of the hang_stages file when called on.
     """
     return stage[::-1][lives]
+
 
 def update_wins_worksheet(USER, streak):
     print("Updating your score...")
@@ -166,6 +166,7 @@ def display_wins_worksheet():
     scores = SHEET.worksheet("Wins").get_all_values()
     print(tabulate(scores, headers="firstrow", numalign="center", tablefmt="heavy_grid"))
 
+
 def main():
     USER = welcome_screen()
     streak = 0
@@ -173,17 +174,21 @@ def main():
     while True:
         retrieved_random_word, retrieved_hidden_word = get_random_word()
         streak = (play_game(retrieved_random_word, retrieved_hidden_word, streak))
-        end = input(print("""\nEnd of the road...please choose from either option below: 
-                            1. Play again
-                            2. Exit to main menu (THIS WILL RESET YOUR STREAK)"""))
-        if end == "1":
-            continue
-        else:
-            update_wins_worksheet(USER, streak)
-            break
+        print("""\nEnd of the road...please choose from either option below:
+        1. Play again
+        2. Exit to main menu (THIS WILL RESET YOUR STREAK)""")
+        while True:
+            choice = input("\nEnter key: ")
+            if choice == "1":
+                break
+            elif choice == "2":
+                update_wins_worksheet(USER, streak)
+                streak = 0
+                main_menu(USER)
+                break
+            else:
+                print('Please enter either "1" or "2"')
+                continue
+
+
 main()
-
-
-
-
-
