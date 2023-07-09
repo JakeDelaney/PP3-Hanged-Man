@@ -40,6 +40,16 @@ The game is built using Python programming language, showcasing its versatility 
 
 <br>
 
+## Design
+### Flowchart
+
+The below flowchart was created prior to the development of the application. This flowchart was used to serve as a foundation for the final deployed project.
+With the exception of some minor changes brought about due to scope increase, the final project does largely mirror the data flow and structure depicted within the flowchart.
+
+![Blank board](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/603a695b-ae65-477e-b9eb-91f50f9a7665)
+
+<br>
+
 ## Features
 ### Welcome Page
 The user is welcomed to the program through an ascii banner displaying the game name, and an ascii art piece of a skeleton skull.
@@ -87,6 +97,13 @@ Choosing the 'Scoreboard' option will display a list of all previous users, and 
 
 <br>
 
+The program also includes support for Google Drive API, which allows for the import/export of the 'user'and 'streak' values to an external spreadsheet named 'hanged_man.' This spreadsheet is stored within a google drive account.
+Whenever the scoreboard is shown to the user, the values have been imported from this sheet.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/24c30cfa-4d3e-4cb2-a54c-fecd3eb75742)
+
+<br>
+
 ### Exit Game
 Selecting the 'Exit Game' option will terminate the program, and will also display a final goodbye message directed towards the user.
 
@@ -94,13 +111,17 @@ Selecting the 'Exit Game' option will terminate the program, and will also displ
 
 <br>
 
-
 ### Future features to implement
-* Lorem ipsum
+* Importing additional libraries to implement colour and animations within the program.
+* Including more ascii art when appropriate to improve the user experience and emotional reponse
+* An option for the user to select program difficulty, this in turn will decide the length/complexity of the words they must guess.
+* Some form of multiplayer mode that allows two users to take turns guessing words, and updating their scores individually.
+* The ability to allow the user to select specific words from the word list that they wish to encounter while playing
 
 <br>
 
 ## Testing
+
 ### Identified bugs
 
 <br>
