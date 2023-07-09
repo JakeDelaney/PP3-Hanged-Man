@@ -121,8 +121,27 @@ Selecting the 'Exit Game' option will terminate the program, and will also displ
 <br>
 
 ## Testing
+### Program Functionality
+
+The below tests were carried out to verify the functionality of the program. All tests carried out received a passing grade, and all applications functions have been confirmed as working.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/c3226158-7a19-45fa-9e75-76150e725f80)
+
+<br>
+
+### CI Python Linter Validator
+
+The run.py file of the program was validated through the CI Python Linter Validator. During this test, no outstanding issues were found.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/13b35641-c942-4611-9a3b-c38a8d281dab)
+
+<br>
 
 ### Identified bugs
+
+Several bugs were recorded during the development of the application. A record of these bugs can be found in the below table.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/330c69a9-f9d9-4241-9424-37bcd35da9dd)
 
 <br>
  
