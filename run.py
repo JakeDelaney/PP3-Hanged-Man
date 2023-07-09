@@ -47,7 +47,8 @@ def welcome_screen():
             print("You cannot enter a blank name. Please try again.")
         else:
             break
-    tprint(f"""\nWelcome  {USER}!""")
+    tprint(f"""\nWelcome  
+    {USER}!""")
     return USER
 
 
@@ -58,9 +59,9 @@ def main_menu(USER):
     """
     while True:
         print("""\nSelect from either option below:
-        1. Game Rules
-        2. Start Game
-        3. Show scoreboard
+1. Game Rules
+2. Start Game
+3. Show scoreboard
         """)
         choice = input("Enter key: \n")
 
@@ -77,8 +78,7 @@ def main_menu(USER):
             continue
         else:
             print('Please enter either "1", "2" or "3"')
-        break
-    tprint("\nNOW LET'S PLAY HANGMAN!")
+    print("\nNOW LET'S PLAY HANGMAN!")
 
 
 def get_random_word():
@@ -106,7 +106,6 @@ def play_game(word, hidden, streak):
     print(display_hangman_stage(lives))
     print()
     print(hidden)
-    print(word)
 
     # Run while the word has not been guessed, and the lives are greater than 0
     while not guessed and lives > 0:
@@ -115,7 +114,7 @@ def play_game(word, hidden, streak):
         # Run if the user guess is a single alphabeltical character
         if len(user_guess) == 1 and user_guess.isalpha():
             if user_guess in correct_guess or user_guess in wrong_guess:
-                print("Letter already guessed. Please try another.")
+                print("\nLetter already guessed. Please try another.")
                 continue
 
             # Run if the user guesses correctly
@@ -146,15 +145,16 @@ def play_game(word, hidden, streak):
             print()
             print(hidden)
         else:
-            print("""Invalid entry:
-                     Only single alphabetical characters are accepted.""")
+            print("""\nOnly single alphabetical characters are accepted, and no blank entries are allowed.
+Please try again.""")
 
         if lives == 0:
             print(f"""\nYou have lost...
-The word was {word}""")
+The word was: {word.upper()}""")
             streak = 0
         elif lives > 0 and guessed is True:
-            print("Congratulations! you have discovered the word!")
+            print(f"""\nCongratulations! you have revealed the word!
+The word was: {word.upper()}""")
             streak += 1
     return streak
 
@@ -201,8 +201,8 @@ def main():
         streak = (play_game(
             retrieved_random_word, retrieved_hidden_word, streak))
         print("""\nEnd of the road...please choose from either option below:
-        1. Play again
-        2. Exit to main menu (THIS WILL RESET YOUR STREAK)""")
+1. Play again
+2. Exit to main menu (THIS WILL RESET YOUR STREAK)""")
         while True:
             choice = input("\nEnter key: \n")
             if choice == "1":
@@ -213,7 +213,7 @@ def main():
                 main_menu(USER)
                 break
             else:
-                print('Please enter either "1" or "2"')
+                print('\nPlease enter either "1" or "2"')
                 continue
 
 
