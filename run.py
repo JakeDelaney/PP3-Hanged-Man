@@ -134,7 +134,7 @@ def play_game(word, hidden, streak):
 
             # Run if user guessed incorrectly
             else:
-                print("\n\n\n\n\n\nThat letter is not in the word...\n")
+                print("\n\n\n\That letter is not in the word...\n")
                 lives -= 1
                 if user_guess not in wrong_guess:
                     wrong_guess.append(user_guess)
@@ -145,7 +145,7 @@ def play_game(word, hidden, streak):
             print()
             print(hidden)
         else:
-            print("""\nOnly single alphabetical characters are accepted, and no blank entries are allowed.
+            print("""\nNo blank entries, and single alphabetical characters only.
 Please try again.""")
 
         if lives == 0:
