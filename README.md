@@ -175,10 +175,31 @@ Several bugs were recorded during the development of the application. A record o
  ## Credits
  ### Technologies Used
 * Python
-     
+
  ### Code
+ * "Love Sandwhiches" project ------ for help with Google Drive API and Google auth credentials
+ * art==6.0 ------ library for ascii message banners
+ * https://ascii.co.uk/art/skulls ------ for the ascii skull image
+ * https://www.freecodecamp.org/news/how-to-read-a-file-line-by-line-in-python/ ------ for iterating and printing through text files
+ * https://pypi.org/project/tabulate/ ---------- For understanding the tabulate library
+ * https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c ---------- ascii hangman art stages
  
- ### Applications
+ ### Applications / Libraries
+* Gitpod for the development environment.
+* Git for version control.
+* Github for file and website hosting.
+* lucidspark for the flowchart
+* art==6.0
+* cachetools==5.3.1
+* google-auth==2.21.0
+* google-auth-oauthlib==1.0.0
+* gspread==5.10.0
+* oauthlib==3.2.2
+* pyasn1==0.5.0
+* pyasn1-modules==0.3.0
+* requests-oauthlib==1.3.1
+* rsa==4.9
+* tabulate==0.9.0
  
  ### Acknowledgements
 * My tutor Derek McCaudley for guidance during the project.
