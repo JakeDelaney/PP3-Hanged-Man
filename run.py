@@ -3,7 +3,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from art import *
 from tabulate import tabulate
-from words import medium_word_list
+from words import word_list
 from hangman_stages import stage
 import random
 
@@ -41,7 +41,7 @@ def welcome_screen():
 
     print("\n\nWelcome to Hangman's Quest!")
     while True:
-        USER = input("\nPlease enter your name: ").upper()
+        USER = input("\nPlease enter your name: \n").upper()
         if len(USER) == 0:
             print("You cannot enter a blank name. Please try again.")
         else:
@@ -61,7 +61,7 @@ def main_menu(USER):
         2. Start Game
         3. Show scoreboard
         """)
-        choice = input("Enter key: ")
+        choice = input("Enter key: \n")
 
         if choice == '1':
             tprint("\nGAME RULES")
@@ -86,7 +86,7 @@ def get_random_word():
     and creates an obscured variant of word using dashes
     Both word and its hidden variant are returned.
     """
-    random_word = random.choice(medium_word_list)
+    random_word = random.choice(word_list)
     hidden_word = "-" * len(random_word)
     return random_word, hidden_word
 
@@ -110,7 +110,7 @@ def play_game(word, hidden, streak):
 
     # Run while the word has not been guessed, and the lives are greater than 0
     while not guessed and lives > 0:
-        user_guess = input("\nEnter your guess: ")
+        user_guess = input("\nEnter your guess: \n").lower()
 
         # Run if the user guess is a single alphabeltical character
         if len(user_guess) == 1 and user_guess.isalpha():
@@ -204,7 +204,7 @@ def main():
         1. Play again
         2. Exit to main menu (THIS WILL RESET YOUR STREAK)""")
         while True:
-            choice = input("\nEnter key: ")
+            choice = input("\nEnter key: \n")
             if choice == "1":
                 break
             elif choice == "2":
