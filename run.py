@@ -26,10 +26,13 @@ def read_txt_file(text):
        and iterates through each line of the file.
        Content of the file is then printed out to the terminal.
     """
-    with open(text, "r") as file:
-        for line in file:
-            print(line, end="")
-        print()
+    try:
+        with open(text, "r") as file:
+            for line in file:
+                print(line, end="")
+            print()
+    except FileNotFoundError:
+        print(f"File {text} not found.")
 
 
 def welcome_screen():
@@ -116,7 +119,7 @@ def play_game(word, hidden, streak):
     while not guessed and lives > 0:
         user_guess = input("\nEnter your guess: \n").lower()
 
-        # Run if the user guess is a single alphabeltical character
+        # Run if the user guess is a single alphabetical character
         if len(user_guess) == 1 and user_guess.isalpha():
             if user_guess in correct_guess or user_guess in wrong_guess:
                 print("\nLetter already guessed. Please try another.")
