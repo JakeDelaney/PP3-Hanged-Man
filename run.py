@@ -21,9 +21,9 @@ SHEET = GSPREAD_CLIENT.open("hanged_man")
 
 
 def read_txt_file(text):
-    """This function open a text file,
+    """Function opens a text file,
        and iterates through each line of the file.
-       The content of this file are then printed out to the terminal.
+       Content of the file is then printed out to the terminal.
     """
     with open(text, "r") as file:
         for line in file:
@@ -32,10 +32,9 @@ def read_txt_file(text):
 
 
 def welcome_screen():
-    """This function displays an ascii welcome logo and art piece.
-    The skull art is stored in a seperate text file and is called
-    using the open function. A for loop is used to iterate over each line
-    and print the contents into the run.py file.
+    """Function displays an ascii welcome logo and art piece using
+    read_txt_file() and tprint. User is prompted to enter a username,
+    which is then returned.
     """
     tprint("Hangman's Quest!")
     read_txt_file("ascii_skull.txt")
@@ -52,10 +51,10 @@ def welcome_screen():
 
 
 def main_menu(USER):
-    """This function comprises the main menu. From here the user can select
-    the option to view the game rules, or the option to start the game itself"
+    """Function comprises the main menu. From here the user can select
+    the option to view the game rules, start the game,
+    or view the current scoreboard"
     """
-
     while True:
         print("""\nSelect from either option below:
         1. Game Rules
@@ -83,9 +82,9 @@ def main_menu(USER):
 
 
 def get_random_word():
-    """This function pulls a randomized word from the word list
-    and creates ann obscured variant of that word using dashes
-    Both the randomized word and its hidden equivalent are then return.
+    """Function pulls a randomized word from the word list
+    and creates an obscured variant of word using dashes
+    Both word and its hidden variant are returned.
     """
     random_word = random.choice(medium_word_list)
     hidden_word = "-" * len(random_word)
@@ -93,11 +92,12 @@ def get_random_word():
 
 
 def play_game(word, hidden, streak):
-    """This function takes two arguments;
-    the random word and its hidden variant.
-    The function uses if statements, and for loops,
-    to control the flow of data and
-    makes logical decisions in regards to correct and incorrect user guesses.
+    """Function takes three arguments;
+    random word and its hidden variant from get_random_word()
+    Streak argument tracks successive player wins.
+    If statements, and for loops, are used
+    to control the flow of data and make
+    logical decisions for correct or incorrect user guesses.
     """
     guessed = False
     lives = 6
@@ -108,14 +108,17 @@ def play_game(word, hidden, streak):
     print(hidden)
     print(word)
 
+    # Run while the word has not been guessed, and the lives are greater than 0
     while not guessed and lives > 0:
         user_guess = input("\nEnter your guess: ")
 
+        # Run if the user guess is a single alphabeltical character
         if len(user_guess) == 1 and user_guess.isalpha():
             if user_guess in correct_guess or user_guess in wrong_guess:
                 print("Letter already guessed. Please try another.")
                 continue
 
+            # Run if the user guesses correctly
             if user_guess in word:
                 hidden = ""
                 print("\n\n\n\n\n\nThat letter is in the word!\n")
@@ -129,6 +132,8 @@ def play_game(word, hidden, streak):
                         hidden += "_"
                 if hidden == word:
                     guessed = True
+
+            # Run if user guessed incorrectly
             else:
                 print("\n\n\n\n\n\nThat letter is not in the word...\n")
                 lives -= 1
@@ -155,13 +160,17 @@ The word was {word}""")
 
 
 def display_hangman_stage(lives):
-    """This function returns the reversed order
-       of the hang_stages file when called on.
+    """Function returns the reversed order
+       of the hang_stages.py file when called on.
     """
     return stage[::-1][lives]
 
 
 def update_wins_worksheet(USER, streak):
+    """Function appends the values stored within
+    the USER and streak variables, and uploads them
+    to the google drive worksheet
+    """
     print("Updating your score...")
     wins_worksheet = SHEET.worksheet("Wins")
     wins_worksheet.append_row([USER, streak])
@@ -169,12 +178,21 @@ def update_wins_worksheet(USER, streak):
 
 
 def display_wins_worksheet():
+    """Function pulls data from the google drive worksheet.
+    Data is formated with tabulate and printed to terminal
+    to display the latest user scores.
+    """
     scores = SHEET.worksheet("Wins").get_all_values()
     print(tabulate(
         scores, headers="firstrow", numalign="center", tablefmt="heavy_grid"))
 
 
 def main():
+    """
+    The main program function. Adhering to best pratices,
+    this function contains all other central functions, as nested functions.
+    From here these nested functions are called on when required.
+    """
     USER = welcome_screen()
     streak = 0
     main_menu(USER)
@@ -200,4 +218,3 @@ def main():
 
 
 main()
-
