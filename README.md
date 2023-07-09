@@ -144,6 +144,33 @@ Several bugs were recorded during the development of the application. A record o
 ![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/330c69a9-f9d9-4241-9424-37bcd35da9dd)
 
 <br>
+
+## Deployment
+
+### How to deploy this site
+
+* Navigate to the Heroku dashboard and click "New" in the top right corner.
+* Choose "Create New App" from the drop-down menu.
+* Provide a name for the appe (must be uniqure) and select a region.
+* Click the option to "Create App."
+* Navigate to the project's Deploy Tab, go to Settings and scroll down to Config Vars.
+* Click "Reveal Config Vars" and add "CREDS" as the Key and the contents of the "creds.json" file as the value.
+* Scroll down to the Build pack section, click "Add Build pack," select "Python," and "Node.js" and save.
+* Return to the top of the page and go to the Deploy tab.
+* Choose GitHub as the deployment method and confirm the connection.
+* Search for the repository name and click "Connect."
+* Scroll to the bottom of the deploy page and select the preferred deployment type.
+* choose "Enable Automatic Deploys" which will  automatically build/rebuild the deployment when commits are pushed to the repository.
+
+### How to clone this site
+* Navigate to the main page of the desired repository.
+* Click the "Code" option above the list of files.
+* Copy the repository URL, and then open up Git Bash.
+* Change the current working directory to a location for the cloned directory.
+* Enter the command 'git clone' and paste the copied URL.
+* Press enter to create a local clone.
+
+<br>
  
  ## Credits
  ### Technologies Used
