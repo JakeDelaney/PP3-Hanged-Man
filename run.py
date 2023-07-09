@@ -142,7 +142,7 @@ def play_game(word, hidden, streak):
 
             # Run if user guessed incorrectly
             else:
-                print("\n\n\n\That letter is not in the word...\n")
+                print("\n\n\nThat letter is not in the word...\n")
                 lives -= 1
                 if user_guess not in wrong_guess:
                     wrong_guess.append(user_guess)
@@ -180,9 +180,12 @@ def update_wins_worksheet(USER, streak):
     to the google drive worksheet
     """
     print("Updating your score...")
-    wins_worksheet = SHEET.worksheet("Wins")
-    wins_worksheet.append_row([USER, streak])
-    print("Update successful!")
+    try:
+        wins_worksheet = SHEET.worksheet("Wins")
+        wins_worksheet.append_row([USER, streak])
+        print("Update successful!")
+    except Exception as e:
+        print(f"An error occurred while updating the score: {e}")
 
 
 def display_wins_worksheet():
@@ -190,9 +193,12 @@ def display_wins_worksheet():
     Data is formated with tabulate and printed to terminal
     to display the latest user scores.
     """
-    scores = SHEET.worksheet("Wins").get_all_values()
-    print(tabulate(
-        scores, headers="firstrow", numalign="center", tablefmt="heavy_grid"))
+    try:
+        scores = SHEET.worksheet("Wins").get_all_values()
+        print(tabulate(
+            scores, headers="firstrow", numalign="center", tablefmt="heavy_grid"))
+    except Exception as e:
+        print(f"An error occurred while displaying the scoreboard: {e}")
 
 
 def main():
