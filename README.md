@@ -57,6 +57,44 @@ There are 4 options the users can choose from:
 3. Show Scoreboard
 4. Exit Game
 
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/d4584272-0f26-4b01-a540-af105c4d0aeb)
+
+<br>
+
+### Game Rules
+Selecting the 'Game Rules' option will pull the rules from a seperate 'game_rules.txt' file and print them to the terminal. 
+The program will also loop back to the start of the main menu function and request another input (this is done for every option.)
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/894184ea-1d98-4967-b616-4fd7b1be28d7)
+
+<br>
+
+### Start Game
+The 'Start Game' option calls the the play_game function and begins the main game loop. Here the initial ascii hanging pole from the 'hangmang_stages.py' file is pulled and printed.
+A random word is also pulled from the wordlist, obfuscated, and then displayed beneath the ascii hangman art.
+
+Once the user has entered a single alphabetical character (I.e made their guess,) the lives variable and wrong_guess list are displayed to aid the user in keeping track of their current progress.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/8925e99a-a8e6-4307-b11a-b1c48aa84909)
+
+<br>
+
+### Scoreboard
+
+Choosing the 'Scoreboard' option will display a list of all previous users, and their highest 'streak' acheived. The streak values represents how many successive reveals the users has had without failing. If the user fails to reveal a word, the streak variable is reset to 0.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/57294d6a-a01e-4d5b-ad8f-c04611b22706)
+
+<br>
+
+### Exit Game
+Selecting the 'Exit Game' option will terminate the program, and will also display a final goodbye message directed towards the user.
+
+![image](https://github.com/JakeDelaney/PP3-Hanged-Man/assets/76518393/2aa74972-f67c-496b-ad1d-f4662713ad0f)
+
+<br>
+
+
 ### Future features to implement
 * Lorem ipsum
 
