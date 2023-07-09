@@ -1,11 +1,12 @@
 # Import statements for external libraries and modules
 import gspread
+import random
+import sys
 from google.oauth2.service_account import Credentials
 from art import *
 from tabulate import tabulate
 from words import word_list
 from hangman_stages import stage
-import random
 
 # List of the APIs the program will access.
 SCOPE = [
@@ -61,7 +62,8 @@ def main_menu(USER):
         print("""\nSelect from either option below:
 1. Game Rules
 2. Start Game
-3. Show scoreboard
+3. Show Scoreboard
+4. Exit Game
         """)
         choice = input("Enter key: \n")
 
@@ -76,8 +78,11 @@ def main_menu(USER):
             tprint("\nSCOREBOARD")
             display_wins_worksheet()
             continue
+        elif choice == '4':
+            sys.exit(f"""\nTHANKS FOR PLAYING {USER}!
+GOODBYE.\n""")
         else:
-            print('Please enter either "1", "2" or "3"')
+            print('Please enter either "1", "2", "3" or "4"')
     print("\nNOW LET'S PLAY HANGMAN!")
 
 
